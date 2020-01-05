@@ -107,7 +107,7 @@ Everything necessary to *deploy*/*release* the software will be generated / copi
 
 > **Tip**: If you want to ensure the folder is committed to the repository, add a `README.md` file in the folder and ensure it's not ignored by git. Otherwise, this folder usually created by the build process
 
-Contents of this folder should be ignored via the [.gitignore](#39-fa-file-gitignore) file, except for `README.md` mentioned in the *Tip* above
+Contents of this folder should be ignored via the [.gitignore](#fa-file-gitignore) file, except for `README.md` mentioned in the *Tip* above
 
 ```text
 artifacts
@@ -210,7 +210,7 @@ Repository documentation
 
 Sample content:
 
-- Additional details and references from [README.md](#310-fa-file-gitattributes)
+- Additional details and references from [README.md](#fa-file-gitattributes)
 - Project-specific wiki pages
 
 ### :fa-folder: `src`
