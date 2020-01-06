@@ -1,39 +1,40 @@
 ---
-title: Git repository layout
 author: Andres Robinet
-date: 2020-01-04T23:14:45.639Z
+date: 2020-01-05T05:33:42.648Z
+draft: true
 puppeteer:
+  printBackground: true
   displayHeaderFooter: true
   format: A4
-  headerTemplate: '<div style="font-size: 10px; width: 100%; text-align: center"><span class="title"></span></div>'
-  footerTemplate: '<div style="font-size: 10px; width: 100%; text-align: center">Page <span class="pageNumber"></span> of <span class="totalPages"></span></div>'
 ---
 
-- [To Do](#to-do)
-- [Version](#version)
-- [Purpose](#purpose)
-- [Guideline](#guideline)
+# Git repository layout
+
+- [Git repository layout](#git-repository-layout)
+  - [To Do](#to-do)
+  - [Version](#version)
+  - [Purpose](#purpose)
   - [Proposed layout](#proposed-layout)
-  - [:fa-file: README.md](#fa-file-readmemd)
-  - [:fa-file: .gitignore](#fa-file-gitignore)
-  - [:fa-file: .gitattributes](#fa-file-gitattributes)
-  - [:fa-file: gitversion.yml](#fa-file-gitversionyml)
-  - [:fa-folder-open: artifacts](#fa-folder-open-artifacts)
-    - [:fa-folder: artifacts/output](#fa-folder-artifactsoutput)
-      - [Projects that produce binaries / dist files](#projects-that-produce-binaries--dist-files)
-      - [Projects that produce and publish a docker image](#projects-that-produce-and-publish-a-docker-image)
-    - [:fa-folder: artifacts/packages](#fa-folder-artifactspackages)
-    - [:fa-folder: artifacts/release](#fa-folder-artifactsrelease)
-    - [:fa-folder: artifacts/tests](#fa-folder-artifactstests)
-    - [:fa-folder: artifacts/tmp](#fa-folder-artifactstmp)
-    - [:fa-folder: artifacts/logs](#fa-folder-artifactslogs)
-  - [:fa-folder-open: build](#fa-folder-open-build)
-    - [:fa-folder: build/azure-devops](#fa-folder-buildazure-devops)
-    - [:fa-folder: build/docker](#fa-folder-builddocker)
-  - [:fa-folder: docs](#fa-folder-docs)
-  - [:fa-folder: src](#fa-folder-src)
-  - [:fa-folder: tests](#fa-folder-tests)
-  - [:fa-folder: tools](#fa-folder-tools)
+    - [:fa-file: README.md](#fa-file-readmemd)
+    - [:fa-file: .gitignore](#fa-file-gitignore)
+    - [:fa-file: .gitattributes](#fa-file-gitattributes)
+    - [:fa-file: gitversion.yml](#fa-file-gitversionyml)
+    - [:fa-folder-open: artifacts](#fa-folder-open-artifacts)
+      - [:fa-folder: artifacts/output](#fa-folder-artifactsoutput)
+        - [Projects that produce binaries / dist files](#projects-that-produce-binaries--dist-files)
+        - [Projects that produce and publish a docker image](#projects-that-produce-and-publish-a-docker-image)
+      - [:fa-folder: artifacts/packages](#fa-folder-artifactspackages)
+      - [:fa-folder: artifacts/release](#fa-folder-artifactsrelease)
+      - [:fa-folder: artifacts/tests](#fa-folder-artifactstests)
+      - [:fa-folder: artifacts/tmp](#fa-folder-artifactstmp)
+      - [:fa-folder: artifacts/logs](#fa-folder-artifactslogs)
+    - [:fa-folder-open: build](#fa-folder-open-build)
+      - [:fa-folder: build/azure-devops](#fa-folder-buildazure-devops)
+      - [:fa-folder: build/docker](#fa-folder-builddocker)
+    - [:fa-folder: docs](#fa-folder-docs)
+    - [:fa-folder: src](#fa-folder-src)
+    - [:fa-folder: tests](#fa-folder-tests)
+    - [:fa-folder: tools](#fa-folder-tools)
 
 ## To Do
 
@@ -51,9 +52,7 @@ puppeteer:
 
 Help development teams organize git repositories
 
-## Guideline
-
-### Proposed layout
+## Proposed layout
 
 ```text
 README.md
