@@ -11,7 +11,7 @@ puppeteer:
 
 ## The problem
 
-![Dependencies](net-core-transitive-dependencies.dependencies.png)
+![.NET Core - Transitive Dependencies](net-core-transitive-dependencies.dependencies.png)
 
 - `Business Logic Project` depends on `Data Access Project` and `NuGet Package`
 - `MVC Application` depends on `Business Logic Project`

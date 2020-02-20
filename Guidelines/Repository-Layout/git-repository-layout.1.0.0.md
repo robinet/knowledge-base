@@ -15,31 +15,30 @@ puppeteer:
   - [Version](#version)
   - [Purpose](#purpose)
   - [Proposed layout](#proposed-layout)
-    - [:fa-file: README.md](#fa-file-readmemd)
-    - [:fa-file: .gitignore](#fa-file-gitignore)
-    - [:fa-file: .gitattributes](#fa-file-gitattributes)
-    - [:fa-file: gitversion.yml](#fa-file-gitversionyml)
-    - [:fa-folder-open: artifacts](#fa-folder-open-artifacts)
-      - [:fa-folder: artifacts/output](#fa-folder-artifactsoutput)
+    - [:fa-file: `README.md`](#fa-file-readmemd)
+    - [:fa-file: `.gitignore`](#fa-file-gitignore)
+    - [:fa-file: `.gitattributes`](#fa-file-gitattributes)
+    - [:fa-file: `gitversion.yml`](#fa-file-gitversionyml)
+    - [:fa-folder-open: `artifacts`](#fa-folder-open-artifacts)
+      - [:fa-folder: `artifacts/output`](#fa-folder-artifactsoutput)
         - [Projects that produce binaries / dist files](#projects-that-produce-binaries--dist-files)
         - [Projects that produce and publish a docker image](#projects-that-produce-and-publish-a-docker-image)
-      - [:fa-folder: artifacts/packages](#fa-folder-artifactspackages)
-      - [:fa-folder: artifacts/release](#fa-folder-artifactsrelease)
-      - [:fa-folder: artifacts/tests](#fa-folder-artifactstests)
-      - [:fa-folder: artifacts/tmp](#fa-folder-artifactstmp)
-      - [:fa-folder: artifacts/logs](#fa-folder-artifactslogs)
-    - [:fa-folder-open: build](#fa-folder-open-build)
-      - [:fa-folder: build/azure-devops](#fa-folder-buildazure-devops)
-      - [:fa-folder: build/docker](#fa-folder-builddocker)
-    - [:fa-folder: docs](#fa-folder-docs)
-    - [:fa-folder: src](#fa-folder-src)
-    - [:fa-folder: tests](#fa-folder-tests)
-    - [:fa-folder: tools](#fa-folder-tools)
+      - [:fa-folder: `artifacts/packages`](#fa-folder-artifactspackages)
+      - [:fa-folder: `artifacts/release`](#fa-folder-artifactsrelease)
+      - [:fa-folder: `artifacts/tests`](#fa-folder-artifactstests)
+      - [:fa-folder: `artifacts/tmp`](#fa-folder-artifactstmp)
+      - [:fa-folder: `artifacts/logs`](#fa-folder-artifactslogs)
+    - [:fa-folder-open: `build`](#fa-folder-open-build)
+      - [:fa-folder:  `build/azure-devops`](#fa-folder-buildazure-devops)
+      - [:fa-folder: `build/docker`](#fa-folder-builddocker)
+    - [:fa-folder: `docs`](#fa-folder-docs)
+    - [:fa-folder: `src`](#fa-folder-src)
+    - [:fa-folder: `tests`](#fa-folder-tests)
+    - [:fa-folder: `tools`](#fa-folder-tools)
 
 ## To Do
 
-- [ ] Describe gitversion.yml
-- [ ] Expand artifacts sections (especially packages and release)
+- [ ] Expand artifacts sections (especially `packages` and `release`)
 - [ ] Describe and expand `build`
 - [ ] Local builds vs CI builds, what's the guideline regarding the use of Azure DevOps tasks
 - [ ] Describe and expand `docs`, `src`, `tests`, and `tools`
@@ -75,38 +74,46 @@ tools
 
 ### :fa-file: `README.md`
 
-Repository *README* file
+**Required.** Repository *README* file
 
-Team is adviced to follow suggestions from [Make a README](https://www.makeareadme.com/#suggestions-for-a-good-readme)
+Team is advised to follow suggestions from [Make a README](https://www.makeareadme.com/#suggestions-for-a-good-readme)
 
-> *Tip*: [Wikipedia](https://en.wikipedia.org/wiki/README) has a good summary about this and other common files distributed with software
+> **:fa-lightbulb-o: TIP**
+> [Wikipedia](https://en.wikipedia.org/wiki/README) has a good summary about this and other common files distributed with software
 
 ### :fa-file: `.gitignore`
 
-Not strictly required by git, but so helpful that should be considered mandatory
+**Required.** Not strictly required by git, but so helpful that is considered mandatory
 
-- See [GitHub: Ignoring files](https://help.github.com/en/github/using-git/ignoring-files) for a general overview/reference about `.gitignore` files
-
-- See [Git gitignore dotnet](git-gitignore-dotnet.1.0.0.md) for repositories based on Visual Studio, VS Code, and .NET in general
+> **:fa-external-link: SEE ALSO**
+>
+> - [GitHub: Ignoring files](https://help.github.com/en/github/using-git/ignoring-files) for a general overview/reference about `.gitignore` files
 
 ### :fa-file: `.gitattributes`
 
-Standard git customization file
+**Optional.** Standard git customization file
 
-- See [Customizing Git - Git Attributes](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes) in the official git docs
-- See [.gitattributes Best Practices](https://rehansaeed.com/gitattributes-best-practices/) and [Be a Git ninja: the .gitattributes file](https://medium.com/@pablorsk/be-a-git-ninja-the-gitattributes-file-e58c07c9e915) for practical use cases
+> **:fa-external-link: SEE ALSO**
+> - [Customizing Git - Git Attributes](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes) in the official git docs
+> - [.gitattributes Best Practices](https://rehansaeed.com/gitattributes-best-practices/) from Muhammad Rehan Saeed
+> - [Be a Git ninja: the .gitattributes file](https://medium.com/@pablorsk/be-a-git-ninja-the-gitattributes-file-e58c07c9e915) for practical use cases
 
 ### :fa-file: `gitversion.yml`
 
+**Optional.** Configuration file for GitVersion
+
+[GitVersion](https://github.com/GitTools/GitVersion) is the recommended tool to manage software versioning for code in Git repositories
+
 ### :fa-folder-open: `artifacts`
 
-Used to store binary / compiled / minified results of running a *build*, typically in the context of a CI/CD pipeline
+**Ignore explicitly**. Used to store binary / compiled / minified results of running a *build*, typically in the context of a CI/CD pipeline
 
-Everything necessary to *deploy*/*release* the software will be generated / copied and stored in this folder during the *build* process
+Everything necessary to *deploy / release* the software will be generated / copied and stored in the `artifacts` folder during the *build* process
 
-> **Tip**: If you want to ensure the folder is committed to the repository, add a `README.md` file in the folder and ensure it's not ignored by git. Otherwise, this folder usually created by the build process
-
-Contents of this folder should be ignored via the [.gitignore](#fa-file-gitignore) file, except for `README.md` mentioned in the *Tip* above
+> **:fa-exclamation-circle: WARNING**
+>
+> - The `artifacts` folder is created by the build process
+> - This folder should be explicitly ignored via [.gitignore](#fa-file-gitignore) to avoid mistakes, since everything created in it must never be commited / pushed
 
 ```text
 artifacts
