@@ -1,3 +1,3 @@
-# BOK
+# Knowledge Base
 
-My personal body of knowledge
+My personal Knowledge Base
