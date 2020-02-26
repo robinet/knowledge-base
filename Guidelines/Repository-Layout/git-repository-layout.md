@@ -1,6 +1,6 @@
 ---
 author: Andres Robinet
-date: 2020-01-05T05:33:42.648Z
+date: 2020-02-26T17:38:51.644Z
 draft: true
 puppeteer:
   printBackground: true
@@ -15,26 +15,26 @@ puppeteer:
   - [Version](#version)
   - [Purpose](#purpose)
   - [Proposed layout](#proposed-layout)
-    - [:fa-file: `README.md`](#fa-file-readmemd)
-    - [:fa-file: `.gitignore`](#fa-file-gitignore)
-    - [:fa-file: `.gitattributes`](#fa-file-gitattributes)
-    - [:fa-file: `gitversion.yml`](#fa-file-gitversionyml)
-    - [:fa-folder-open: `artifacts`](#fa-folder-open-artifacts)
-      - [:fa-folder: `artifacts/output`](#fa-folder-artifactsoutput)
+    - [:page_facing_up: `README.md`](#pagefacingup-readmemd)
+    - [:page_facing_up: `.gitignore`](#pagefacingup-gitignore)
+    - [:page_facing_up: `.gitattributes`](#pagefacingup-gitattributes)
+    - [:page_facing_up: `gitversion.yml`](#pagefacingup-gitversionyml)
+    - [:open_file_folder: `artifacts`](#openfilefolder-artifacts)
+      - [:file_folder: `artifacts/output`](#filefolder-artifactsoutput)
         - [Projects that produce binaries / dist files](#projects-that-produce-binaries--dist-files)
         - [Projects that produce and publish a docker image](#projects-that-produce-and-publish-a-docker-image)
-      - [:fa-folder: `artifacts/packages`](#fa-folder-artifactspackages)
-      - [:fa-folder: `artifacts/release`](#fa-folder-artifactsrelease)
-      - [:fa-folder: `artifacts/tests`](#fa-folder-artifactstests)
-      - [:fa-folder: `artifacts/tmp`](#fa-folder-artifactstmp)
-      - [:fa-folder: `artifacts/logs`](#fa-folder-artifactslogs)
-    - [:fa-folder-open: `build`](#fa-folder-open-build)
-      - [:fa-folder:  `build/azure-devops`](#fa-folder-buildazure-devops)
-      - [:fa-folder: `build/docker`](#fa-folder-builddocker)
-    - [:fa-folder: `docs`](#fa-folder-docs)
-    - [:fa-folder: `src`](#fa-folder-src)
-    - [:fa-folder: `tests`](#fa-folder-tests)
-    - [:fa-folder: `tools`](#fa-folder-tools)
+      - [:file_folder: `artifacts/packages`](#filefolder-artifactspackages)
+      - [:file_folder: `artifacts/release`](#filefolder-artifactsrelease)
+      - [:file_folder: `artifacts/tests`](#filefolder-artifactstests)
+      - [:file_folder: `artifacts/tmp`](#filefolder-artifactstmp)
+      - [:file_folder: `artifacts/logs`](#filefolder-artifactslogs)
+    - [:open_file_folder: `build`](#openfilefolder-build)
+      - [:file_folder:  `build/azure-devops`](#filefolder-buildazure-devops)
+      - [:file_folder: `build/docker`](#filefolder-builddocker)
+    - [:file_folder: `docs`](#filefolder-docs)
+    - [:file_folder: `src`](#filefolder-src)
+    - [:file_folder: `tests`](#filefolder-tests)
+    - [:file_folder: `tools`](#filefolder-tools)
 
 ## To Do
 
@@ -45,7 +45,7 @@ puppeteer:
 
 ## Version
 
-`git-repository-layout.1.0.0`
+`0.1.0-alpha.1`
 
 ## Purpose
 
@@ -72,45 +72,46 @@ tools
     ...
 ```
 
-### :fa-file: `README.md`
+### :page_facing_up: `README.md`
 
 **Required.** Repository *README* file
 
 Team is advised to follow suggestions from [Make a README](https://www.makeareadme.com/#suggestions-for-a-good-readme)
 
-> **:fa-lightbulb-o: TIP**
+> **:bulb: TIP**
 > [Wikipedia](https://en.wikipedia.org/wiki/README) has a good summary about this and other common files distributed with software
 
-### :fa-file: `.gitignore`
+### :page_facing_up: `.gitignore`
 
 **Required.** Not strictly required by git, but so helpful that is considered mandatory
 
-> **:fa-external-link: SEE ALSO**
+> **:link: SEE ALSO**
 >
 > - [GitHub: Ignoring files](https://help.github.com/en/github/using-git/ignoring-files) for a general overview/reference about `.gitignore` files
 
-### :fa-file: `.gitattributes`
+### :page_facing_up: `.gitattributes`
 
 **Optional.** Standard git customization file
 
-> **:fa-external-link: SEE ALSO**
+> **:link: SEE ALSO**
+>
 > - [Customizing Git - Git Attributes](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes) in the official git docs
 > - [.gitattributes Best Practices](https://rehansaeed.com/gitattributes-best-practices/) from Muhammad Rehan Saeed
 > - [Be a Git ninja: the .gitattributes file](https://medium.com/@pablorsk/be-a-git-ninja-the-gitattributes-file-e58c07c9e915) for practical use cases
 
-### :fa-file: `gitversion.yml`
+### :page_facing_up: `gitversion.yml`
 
 **Optional.** Configuration file for GitVersion
 
 [GitVersion](https://github.com/GitTools/GitVersion) is the recommended tool to manage software versioning for code in Git repositories
 
-### :fa-folder-open: `artifacts`
+### :open_file_folder: `artifacts`
 
 **Ignore explicitly**. Used to store binary / compiled / minified results of running a *build*, typically in the context of a CI/CD pipeline
 
 Everything necessary to *deploy / release* the software will be generated / copied and stored in the `artifacts` folder during the *build* process
 
-> **:fa-exclamation-circle: WARNING**
+> **:warning: WARNING**
 >
 > - The `artifacts` folder is created by the build process
 > - This folder should be explicitly ignored via [.gitignore](#fa-file-gitignore) to avoid mistakes, since everything created in it must never be commited / pushed
@@ -136,7 +137,7 @@ artifacts
     logs
 ```
 
-#### :fa-folder: `artifacts/output`
+#### :file_folder: `artifacts/output`
 
 Build output of each project
 
@@ -154,7 +155,7 @@ Text file containing the fully-qualified image name: `project-id-N.dockerimage.t
 
 For example, if the `zookeeper` project would follow this standard, there would be a `zookeeper.dockerimage.txt` file with single-line contents: `quay.io/signalfuse/zookeeper:3.4.5-3`
 
-#### :fa-folder: `artifacts/packages`
+#### :file_folder: `artifacts/packages`
 
 Packages produced by all projects in the repo
 
@@ -162,7 +163,7 @@ Packages produced by all projects in the repo
 - npm packages produced by the build (.tgz)
 - Maven packages produced by the build (.pom)
 
-#### :fa-folder: `artifacts/release`
+#### :file_folder: `artifacts/release`
 
 Scripts, tools and installers needed for the *release process*
 
@@ -174,19 +175,19 @@ Sample content:
 - Configuration template processors (to convert .ext.template into .ext)
 - General purpose bash / powershell scripts
 
-#### :fa-folder: `artifacts/tests`
+#### :file_folder: `artifacts/tests`
 
 Test results produced by the build
 
-#### :fa-folder: `artifacts/tmp`
+#### :file_folder: `artifacts/tmp`
 
 Temporary files generated during build
 
-#### :fa-folder: `artifacts/logs`
+#### :file_folder: `artifacts/logs`
 
 Build logs (binary or otherwise)
 
-### :fa-folder-open: `build`
+### :open_file_folder: `build`
 
 ```text
 build
@@ -206,11 +207,11 @@ build
         <project-id-1>.<override-id>.docker-compose.override.yml
 ```
 
-#### :fa-folder:  `build/azure-devops`
+#### :file_folder:  `build/azure-devops`
 
-#### :fa-folder: `build/docker`
+#### :file_folder: `build/docker`
 
-### :fa-folder: `docs`
+### :file_folder: `docs`
 
 Repository documentation
 
@@ -219,14 +220,14 @@ Sample content:
 - Additional details and references from [README.md](#fa-file-gitattributes)
 - Project-specific wiki pages
 
-### :fa-folder: `src`
+### :file_folder: `src`
 
 This is where source code lives
 
-### :fa-folder: `tests`
+### :file_folder: `tests`
 
 This is where unit test projects and integration test projects live
 
-### :fa-folder: `tools`
+### :file_folder: `tools`
 
 Include any tools that may be necessary during development, or during a build (e.g. Portable Git, LINQPad, extensions)
