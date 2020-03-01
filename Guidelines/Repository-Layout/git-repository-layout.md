@@ -1,55 +1,57 @@
 ---
 author: Andres Robinet
-date: 2020-02-26T17:38:51.644Z
-draft: true
+date: 2020-03-01T03:57:10.840Z
+title: Git Repository Layout 0.1.0-alpha.2
 puppeteer:
-  printBackground: true
   displayHeaderFooter: true
+  printBackground: true
   format: A4
 ---
 
-# Git repository layout
+# Git repository layout <!-- omit in toc -->
 
-- [Git repository layout](#git-repository-layout)
-  - [To Do](#to-do)
-  - [Version](#version)
-  - [Purpose](#purpose)
-  - [Proposed layout](#proposed-layout)
-    - [:page_facing_up: `README.md`](#pagefacingup-readmemd)
-    - [:page_facing_up: `.gitignore`](#pagefacingup-gitignore)
-    - [:page_facing_up: `.gitattributes`](#pagefacingup-gitattributes)
-    - [:page_facing_up: `gitversion.yml`](#pagefacingup-gitversionyml)
-    - [:open_file_folder: `artifacts`](#openfilefolder-artifacts)
-      - [:file_folder: `artifacts/output`](#filefolder-artifactsoutput)
-        - [Projects that produce binaries / dist files](#projects-that-produce-binaries--dist-files)
-        - [Projects that produce and publish a docker image](#projects-that-produce-and-publish-a-docker-image)
-      - [:file_folder: `artifacts/packages`](#filefolder-artifactspackages)
-      - [:file_folder: `artifacts/release`](#filefolder-artifactsrelease)
-      - [:file_folder: `artifacts/tests`](#filefolder-artifactstests)
-      - [:file_folder: `artifacts/tmp`](#filefolder-artifactstmp)
-      - [:file_folder: `artifacts/logs`](#filefolder-artifactslogs)
-    - [:open_file_folder: `build`](#openfilefolder-build)
-      - [:file_folder:  `build/azure-devops`](#filefolder-buildazure-devops)
-      - [:file_folder: `build/docker`](#filefolder-builddocker)
-    - [:file_folder: `docs`](#filefolder-docs)
-    - [:file_folder: `src`](#filefolder-src)
-    - [:file_folder: `tests`](#filefolder-tests)
-    - [:file_folder: `tools`](#filefolder-tools)
+## Table of contents <!-- omit in toc -->
 
-## To Do
+- [Version](#version)
+- [Purpose](#purpose)
+- [Assumptions](#assumptions)
+- [Proposed layout](#proposed-layout)
+  - [README file](#readme-file)
+  - [.gitignore](#gitignore)
+  - [.gitattributes](#gitattributes)
+  - [.editorconfig](#editorconfig)
+  - [.dockerignore](#dockerignore)
+  - [gitversion.yml](#gitversionyml)
+  - [Artifacts](#artifacts)
+  - [Build](#build)
+  - [Docs](#docs)
+  - [Source](#source)
+  - [Tests](#tests)
+  - [Tools](#tools)
 
-- [ ] Expand artifacts sections (especially `packages` and `release`)
-- [ ] Describe and expand `build`
-- [ ] Local builds vs CI builds, what's the guideline regarding the use of Azure DevOps tasks
-- [ ] Describe and expand `docs`, `src`, `tests`, and `tools`
+## TODO <!-- omit in toc -->
+
+- [ ] Describe and expand `build/`
+- [ ] Local builds vs CI builds, provide guideline regarding the use of Azure DevOps YAML pipelines and tasks
+- [ ] Describe and expand `docs/`, `src/`, `tests/`, and `tools/`
 
 ## Version
 
-`0.1.0-alpha.1`
+`0.1.0-alpha.2`
 
 ## Purpose
 
 Help development teams organize git repositories
+
+## Assumptions
+
+A git repository will contain one or more *projects*
+
+As a result of a build, each *project* will produce:
+
+1. At most one folder of compiled/built files
+2. At most one docker image
+3. One or more distributable packages
 
 ## Proposed layout
 
@@ -57,177 +59,214 @@ Help development teams organize git repositories
 README.md
 .gitignore
 .gitattributes
+.editorconfig
+.dockerignore
 gitversion.yml
-artifacts
+artifacts/
     ...
-build
+build/
     ...
-docs
+docs/
     ...
-src
+src/
     ...
-tests
+tests/
     ...
-tools
+tools/
     ...
 ```
 
-### :page_facing_up: `README.md`
+### README file
 
-**Required.** Repository *README* file
+**Required.** Repository `README.md` file
 
 Team is advised to follow suggestions from [Make a README](https://www.makeareadme.com/#suggestions-for-a-good-readme)
 
 > **:bulb: TIP**
+>
 > [Wikipedia](https://en.wikipedia.org/wiki/README) has a good summary about this and other common files distributed with software
 
-### :page_facing_up: `.gitignore`
+### .gitignore
 
-**Required.** Not strictly required by git, but so helpful that is considered mandatory
+**Required.** Git ignore configuration: `.gitignore`
 
-> **:link: SEE ALSO**
->
-> - [GitHub: Ignoring files](https://help.github.com/en/github/using-git/ignoring-files) for a general overview/reference about `.gitignore` files
-
-### :page_facing_up: `.gitattributes`
-
-**Optional.** Standard git customization file
+Not strictly required by git, but so helpful that is considered mandatory
 
 > **:link: SEE ALSO**
 >
-> - [Customizing Git - Git Attributes](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes) in the official git docs
-> - [.gitattributes Best Practices](https://rehansaeed.com/gitattributes-best-practices/) from Muhammad Rehan Saeed
-> - [Be a Git ninja: the .gitattributes file](https://medium.com/@pablorsk/be-a-git-ninja-the-gitattributes-file-e58c07c9e915) for practical use cases
+> [GitHub: Ignoring files](https://help.github.com/en/github/using-git/ignoring-files) for a general overview/reference about `.gitignore` files
 
-### :page_facing_up: `gitversion.yml`
+### .gitattributes
 
-**Optional.** Configuration file for GitVersion
+**Optional.** Git file attributes configuration: `.gitattributes`
+
+> **:link: SEE ALSO**
+>
+> [Customizing Git - Git Attributes](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes) in the official git docs
+> [.gitattributes Best Practices](https://rehansaeed.com/gitattributes-best-practices/) from Muhammad Rehan Saeed
+> [Be a Git ninja: the .gitattributes file](https://medium.com/@pablorsk/be-a-git-ninja-the-gitattributes-file-e58c07c9e915) for practical use cases
+
+### .editorconfig
+
+**Required.** Coding style configuration across various editors and IDEs: `.editorconfig`
+
+> **:link: SEE ALSO**
+>
+> [EditorConfig](https://editorconfig.org/#file-format-details) a file format for defining coding styles
+
+### .dockerignore
+
+**Required.** Docker ignore configuration: `.dockerignore`
+
+> **:link: SEE ALSO**
+> [Do not ignore .dockerignore](https://medium.com/hackernoon/do-not-ignore-dockerignore-47f5fb67b448) explains the reasons behind `.dockerignore` and how to use it
+> [.dockerignore file](https://docs.docker.com/engine/reference/builder/#dockerignore-file) is the official reference
+
+### gitversion.yml
+
+**Optional.** Configuration file for GitVersion: `gitversion.yml`
 
 [GitVersion](https://github.com/GitTools/GitVersion) is the recommended tool to manage software versioning for code in Git repositories
 
-### :open_file_folder: `artifacts`
+### Artifacts
 
-**Ignore explicitly**. Used to store binary / compiled / minified results of running a *build*, typically in the context of a CI/CD pipeline
+**Ignore in .git.** Stores the resulting files after running a *build*, typically in the context of a CI/CD pipeline
 
-Everything necessary to *deploy / release* the software will be generated / copied and stored in the `artifacts` folder during the *build* process
+Everything necessary to *deploy / release* the software will be generated / copied and stored in the `artifacts` folder during the *build process*
 
 > **:warning: WARNING**
 >
-> - The `artifacts` folder is created by the build process
-> - This folder should be explicitly ignored via [.gitignore](#fa-file-gitignore) to avoid mistakes, since everything created in it must never be commited / pushed
+> The `artifacts` folder is created by the build process
+> This folder should be explicitly ignored via [.gitignore](#gitignore) to avoid mistakes, since everything created in it must never be committed / pushed
 
 ```text
-artifacts
-    output
-        <project-id-1>
-        <project-id-2>
+artifacts/
+    build/
+        <project-id-1>/
+            ...
+        <project-id-2>/
+            ...
         ...
-    packages
-        <project-id-1>.<package-version>.nupkg
-        <project-id-1>.<package-version>.tgz
-        <project-id-1>.<package-version>.pom
+    docker/
+        <project-id-1>.txt
+        <project-id-2>.txt
         ...
-        <project-id-2>.<package-version>.nupkg
-        <project-id-2>.<package-version>.tgz
-        <project-id-2>.<package-version>.pom
+    packages/
+        <package-id-1>.nupkg
+        <package-id-1>.tgz
+        <package-id-1>.pom
         ...
-    release
-    tests
-    tmp
-    logs
+        <package-id-2>.<package-version>.nupkg
+        <package-id-2>.<package-version>.tgz
+        <package-id-2>.<package-version>.pom
+        ...
+    release/
+        ...
+    tests/
+        ...
 ```
 
-#### :file_folder: `artifacts/output`
+#### Artifacts - Build output
 
-Build output of each project
+Per-project build output: `artifacts/build/<project-id-*>`
 
-##### Projects that produce binaries / dist files
-
-Each project will have a dedicated folder `artifacts/output/<project-id-N>` where `project-id-N` is a string or numeric value to identify one of the projects in the repo
+Dedicated folder  where `project-id-*` is a string value to identify one of the projects in the repo
 
 - Binary files for .NET projects (.dll, .exe)
+  - Typically, the contents of the `bin` folder
+  - Published contents for web projects
 - Binary files for Java projects (.jar, .war)
 - Bundled / minified app for Node.js projects
+  - Contents of the `dist` folder
 
-##### Projects that produce and publish a docker image
+#### Artifacts - Docker images
 
-Text file containing the fully-qualified image name: `project-id-N.dockerimage.txt`
+Per-project docker image: `artifacts/docker/project-id-*.dockerimage.txt`
 
-For example, if the `zookeeper` project would follow this standard, there would be a `zookeeper.dockerimage.txt` file with single-line contents: `quay.io/signalfuse/zookeeper:3.4.5-3`
+Text file containing the fully-qualified image name: `hostname[:port]/username/reponame[:tag]`
 
-#### :file_folder: `artifacts/packages`
+> **:link: SEE ALSO**
+>
+> [Referencing Docker Images](https://windsock.io/referencing-docker-images) to learn about fully qualified image names (FQIN)
 
-Packages produced by all projects in the repo
+#### Artifacts - Package files
 
-- NuGet packages produced by the build (.nupkg)
-- npm packages produced by the build (.tgz)
-- Maven packages produced by the build (.pom)
+Packages produced by the build, across all projects in the repo `artifacts/packages/<package-id-*>.<package-extension>`
 
-#### :file_folder: `artifacts/release`
+> **:bulb: TIP**
+>
+> Package ID's should align with project IDs, for example: `artifacts/packages/<project-id-*>.<package-version>.<package-extension>`
 
-Scripts, tools and installers needed for the *release process*
+Examples of package extensions are:
 
-Sample content:
+- NuGet: `.nupkg`
+- npm: `.tgz`
+- Maven: `.pom`
 
-- Cron scripts / templates used for scheduling
-- Windows service installation/configuration scripts
-- IIS management scripts
-- Configuration template processors (to convert .ext.template into .ext)
-- General purpose bash / powershell scripts
+#### Artifacts - Release support files
 
-#### :file_folder: `artifacts/tests`
+Scripts, tools, docs and installers needed for the *release process*: `artifacts/release`
 
-Test results produced by the build
+For example:
 
-#### :file_folder: `artifacts/tmp`
+- **Installer or general purpose scripts**, such as bash or powershell scripts
+- **Release support docs** such as guides, checklists and notes about the release process
+- **Executable tools**, such as template processors, portable LINQPad, etc. that are needed when running a release pipeline
+- **Cron** scripts or templates used for scheduling
+- **Windows Services** installation/configuration scripts
+- **IIS** management scripts
 
-Temporary files generated during build
+#### Artifacts - Test results
 
-#### :file_folder: `artifacts/logs`
+Test results produced by the build: `artifacts/tests`
 
-Build logs (binary or otherwise)
+### Build
 
-### :open_file_folder: `build`
+Build scripts and files: `build/`
 
 ```text
-build
+build/
     build.ps1
     build.sh
-    azure-devops
-        <project-id-1>.azure-pipelines.yml
-        <project-id-2>.azure-pipelines.yml
-        ...
-        <template-id-1>.yml
-        <template-id-2>.yml
-        ...
-    docker
+    azure-pipelines.yml
+    docker/
         <project-id-1>.dockerfile
         <project-id-2>.dockerfile
         ...
-        <project-id-1>.<override-id>.docker-compose.override.yml
 ```
 
-#### :file_folder:  `build/azure-devops`
+#### Build - Bootstrapping scripts
 
-#### :file_folder: `build/docker`
+Bootstrapping scripts:
 
-### :file_folder: `docs`
+- `build/build.ps1` for PowerShell (Windows)
+- `build/build.sh` for BASH (Linux / Mac)
 
-Repository documentation
+#### Build - Azure pipelines configuration
 
-Sample content:
+Azure DevOps YAML pipeline configuration: `build/azure-pipelines.yml`
 
-- Additional details and references from [README.md](#fa-file-gitattributes)
+#### Build - Docker
+
+Docker files: `build/docker`
+
+### Docs
+
+Repository documentation: `docs/`
+
+- Additional details and references
 - Project-specific wiki pages
 
-### :file_folder: `src`
+### Source
 
-This is where source code lives
+Source code: `src/`
 
-### :file_folder: `tests`
+### Tests
 
-This is where unit test projects and integration test projects live
+Unit and integration test projects: `tests/`
 
-### :file_folder: `tools`
+### Tools
+
+Support tools: `tools/`
 
 Include any tools that may be necessary during development, or during a build (e.g. Portable Git, LINQPad, extensions)
